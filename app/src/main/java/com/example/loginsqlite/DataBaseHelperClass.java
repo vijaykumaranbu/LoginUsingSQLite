@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,8 +70,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                         User user = new User(cursor.getString(1),
                                 cursor.getString(2),
                                 cursor.getString(3));
-                        Log.d(TAG, "getAllUsers: " + cursor.getString(0) +
-                                "/" + cursor.getString(1) + "/" + cursor.getString(2) + "/" + cursor.getString(3));
                         users.add(user);
                     } while (cursor.moveToNext());
                 }
