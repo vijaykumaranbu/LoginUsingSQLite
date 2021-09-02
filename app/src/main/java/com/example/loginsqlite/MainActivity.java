@@ -1,7 +1,6 @@
 package com.example.loginsqlite;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 
 import androidx.appcompat.app.AppCompatActivity;
 
