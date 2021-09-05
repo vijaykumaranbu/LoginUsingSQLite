@@ -2,11 +2,19 @@ package com.example.loginsqlite;
 
 public class User {
 
+    private int userId;
     private String userName;
     private String email;
     private String password;
 
     User(String userName,String email,String password){
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    User(int userId,String userName,String email, String password){
+        this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -23,6 +31,10 @@ public class User {
             KEY_EMAIL + " TEXT," +
             KEY_PASSWORD + " TEXT" +
             ")";
+
+    public int getUserId() {
+        return userId;
+    }
 
     public String getUserName() {
         return userName;

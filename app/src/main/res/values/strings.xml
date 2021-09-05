@@ -9,4 +9,8 @@
     <string name="email">Email</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="your_have_an_account">Your have an account?</string>
+    <string name="edit">Edit</string>
+    <string name="edit_user">Edit User</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
 </resources>

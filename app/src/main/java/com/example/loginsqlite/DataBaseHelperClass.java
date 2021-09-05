@@ -67,7 +67,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             try (Cursor cursor = db.rawQuery(selection, null)) {
                 if (cursor.moveToFirst()) {
                     do {
-                        User user = new User(cursor.getString(1),
+                        User user = new User(Integer.parseInt(cursor.getString(0)),
+                                cursor.getString(1),
                                 cursor.getString(2),
                                 cursor.getString(3));
                         users.add(user);
@@ -78,5 +79,26 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         } catch (Exception ignore) {
         }
         return users;
+    }
+
+    public boolean updateUser(User user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues update = new ContentValues();
+        update.put(User.KEY_USER_ID,user.getUserId());
+        update.put(User.KEY_USER_NAME,user.getUserName());
+        update.put(User.KEY_EMAIL,user.getEmail());
+        update.put(User.KEY_PASSWORD,user.getPassword());
+        String query = User.KEY_USER_ID + " = ?";
+        int result = db.update(User.TABLE_NAME,update,query,new String[]{String.valueOf(user.getUserId())});
+        db.close();
+        return result != -1;
+    }
+
+    public boolean deleteUser(int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = User.KEY_USER_ID + " = ?";
+        int result = db.delete(User.TABLE_NAME,query,new String[]{String.valueOf(userId)});
+        db.close();
+        return result != -1;
     }
 }

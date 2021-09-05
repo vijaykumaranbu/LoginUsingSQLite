@@ -13,9 +13,11 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder>{
 
     private final List<User> users;
+    private final UserListener listener;
 
-    public UserAdapter(List<User> users){
+    public UserAdapter(List<User> users,UserListener listener){
         this.users = users;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,7 +41,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return users.size();
     }
 
-    static class UserViewHolder extends RecyclerView.ViewHolder{
+    class UserViewHolder extends RecyclerView.ViewHolder{
 
         private final ItemContainerUserBinding binding;
 
@@ -51,6 +53,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         void setBinding(User user){
             binding.textUserName.setText(user.getUserName());
             binding.textEmail.setText(user.getEmail());
+            binding.btnEdit.setOnClickListener(view -> {
+                listener.onClickedUser(user);
+            });
+            binding.btnDelete.setOnClickListener(view -> {
+                listener.deleteUser(user.getUserId(),getBindingAdapterPosition());
+            });
         }
     }
 }
